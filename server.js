@@ -82,13 +82,24 @@ app.get("/sample", (req,res)=>{
                   } else {
                     console.log(data.body);
                     //data.body la 
+                    var number_item = data.body.items.length;
+
                     var simple_res = data.body.items[0];
-                    var result = [{
-                        id: simple_res.id,
-                        name: simple_res.name
-                    }]
+                    //test lay het data
+                    var result_filter=[]
+                    //dung cach add 
+                    data.body.items.forEach(element => {
+                        result_filter.push({id:element.id,
+                        name:element.name})
+                    });
+                    // var result = [{
+                    //     id: simple_res.id,
+                    //     name: simple_res.name
+                    // }]
+
+
                     res.json({
-                        result_sample:result
+                        result_sample:result_filter
                     })
                   }
                 }
