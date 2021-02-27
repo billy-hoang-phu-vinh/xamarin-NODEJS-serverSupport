@@ -91,7 +91,9 @@ app.get("/sample", (req,res)=>{
                     //dung cach add 
                     data.body.items.forEach(element => {
                         result_filter.push({id:element.id,
-                        name:element.name})
+                        name:element.name,
+                    uri:element.uri,
+                image:element.images[2].url})
                     });
                     // var result = [{
                     //     id: simple_res.id,
@@ -145,7 +147,9 @@ app.get("/artistrecommend/:id", (req,res)=>{
                         //dung cach add 
                         data.body.items.forEach(element => {
                             result_filter.push({id:element.id,
-                            name:element.name})
+                            name:element.name,
+                            uri:element.uri,
+                            image:element.images[2].url})
                         });
                         // var result = [{
                         //     id: simple_res.id,
