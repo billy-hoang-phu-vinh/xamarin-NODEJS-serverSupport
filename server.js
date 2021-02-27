@@ -57,6 +57,50 @@ app.get("/token", (req,res)=>{
         }
       );
 });
+//voi moi lenh. -> token -> search
+app.get("/sample", (req,res)=>{
+    //app in app
+    var token;
+    spotifyApi.clientCredentialsGrant().then(
+        function(data) {
+            token=data.body['access_token'];
+          console.log('The access token expires in ' + data.body['expires_in']);
+          console.log('The access token is ' + data.body['access_token']);
+      
+          // Save the access token so that it's used in future calls
+          spotifyApi.setAccessToken(data.body['access_token']);
+            //token successfully
+            /**get data */
+            //test voi specific api
+            //get elvis album
+            spotifyApi.getArtistAlbums(
+                '43ZHCT0cAZBISjO8DG9PnE',
+                { limit: 10, offset: 20 },
+                function(err, data) {
+                  if (err) {
+                    console.error('Something went wrong!');
+                  } else {
+                    console.log(data.body);
+                    //data.body la 
+                    var simple_res = data.body.items[0];
+                    var result = [{
+                        id: simple_res.id,
+                        name: simple_res.name
+                    }]
+                    res.json({
+                        result_sample:result
+                    })
+                  }
+                }
+              );
+
+        },
+        function(err) {
+          console.log('Something went wrong when retrieving an access token', err);
+        }
+      );
+});
+
 //get category
 app.get("/category", (req,res)=>{
     //app in app
