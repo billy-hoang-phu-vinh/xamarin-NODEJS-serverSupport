@@ -49,8 +49,8 @@ app.get("/token", (req,res)=>{
       
           // Save the access token so that it's used in future calls
           spotifyApi.setAccessToken(data.body['access_token']);
-            res.json({token: token,
-            success:1})
+            res.json( {result:{token: token,
+            success:1}}  )
         },
         function(err) {
           console.log('Something went wrong when retrieving an access token', err);
@@ -72,6 +72,8 @@ app.get("/category", (req,res)=>{
       console.log("Something went wrong!", err);
     });
 });
+
+
 //TEST
 
 app.post("/api/posts", (req,res)=>{
