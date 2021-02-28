@@ -211,7 +211,9 @@ app.get("/search/:id", (req, res) => {
                                 });
                                 
                         console.log('Found playlists are', data.body);
-                        res.json(result_filter)
+                        res.json({
+                            result_sample:result_filter
+                        })
                     }, function (err) {
                         console.log('Something went wrong!', err);
                     });
